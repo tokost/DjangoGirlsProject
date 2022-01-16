@@ -12,17 +12,19 @@
         <title>Django Girls blog</title>
     </head>
     <body>
+    {% block content %} <!-- vlozena cast do bloku -->
             <!-- Toto chcem epouzit ako sucast sablony pre vsetky bloky -->
-    {% for post in posts %}
-        <div class="post">  <!-- Definovanie triedy post -->
-            <div class="date>
-                <!-- "<p>published: {{ post.published_date }}</p> nahradene nasledovnym -->
-                {{ post.published_date }}
+        {% for post in posts %}
+            <div class="post">  <!-- Definovanie triedy post -->
+                <div class="date>
+                    <!-- "<p>published: {{ post.published_date }}</p> nahradene nasledovnym -->
+                    {{ post.published_date }}
+                </div>
+                <h1><a href="">{{ post.title }}</a></h1>
+                <p>{{ post.text|linebreaksbr }}</p>
             </div>
-            <h1><a href="">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
-        </div>
-    {% endfor %}
+        {% endfor %}
     <!-- Všetko čo bude v cykle sa bude opakovať pre každý objekt v zozname -->
+    {% endblock %}
     </body>
 </html>
