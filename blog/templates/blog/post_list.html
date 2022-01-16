@@ -7,9 +7,14 @@
         <div>
             <h1><a href="/">Django Girls Blog</a></h1>
         </div>
-        <!-- premennu dame do cyklu aby sme zobrazili cely zoznam-->
+        <!-- Kombinacia html s nasimi sablonovymi tagami -->
         {% for post in posts %}
-            {{ posts }}
+            <div>
+                <p>published: {{ post.published_date }}</p>
+                <h1><a href="">{{ post.title }}</a></h1>
+                <p>{{ post.text|linebreaksbr }}</p>
+            </div>
         {% endfor %}
+        <!-- Všetko čo bude v cykle sa bude opakovať pre každý objekt v zozname -->
     </body>
 </html>
