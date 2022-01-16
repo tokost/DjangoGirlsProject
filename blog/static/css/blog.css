@@ -1,4 +1,16 @@
-        /*  Náš štýl sme použili na akýkoľvek prvok a */
+        /*  Nsu farbu sme použili na akýkoľvek prvok a */
 h1 a {
     color: #FCA205;
+}
+body {  /*  posunutie zaciatku textu o 15 bodov */
+    padding-left: 15px;
+}
+h1 a {
+    color: #FCA205;
+    font-family: 'Lobster';
+}
+p {     /*  pouzitie novo instalovaneho fontu Lobster */
+   font-family: 'LobsterRegular';
+   font-weight: normal;
+   font-style: normal;
 }
