@@ -12,25 +12,17 @@
         <title>Django Girls blog</title>
     </head>
     <body>
-        <div class="page-header"> <!-- Definovanie triedy page-heder -->
-            <h1><a href="/">Django Girls Blog</a></h1>
-        </div>
-        <!-- Kombinacia html s nasimi sablonovymi tagami -->
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                    {% for post in posts %}
-                        <div class="post">  <!-- Definovanie triedy post -->
-                            <div class="date>
-                                "<p>published: {{ post.published_date }}</p>
-                            </div>
-                            <h1><a href="">{{ post.title }}</a></h1>
-                            <p>{{ post.text|linebreaksbr }}</p>
-                        </div>
-                    {% endfor %}
-                <!-- Všetko čo bude v cykle sa bude opakovať pre každý objekt v zozname -->
-                </div>
+            <!-- Toto chcem epouzit ako sucast sablony pre vsetky bloky -->
+    {% for post in posts %}
+        <div class="post">  <!-- Definovanie triedy post -->
+            <div class="date>
+                <!-- "<p>published: {{ post.published_date }}</p> nahradene nasledovnym -->
+                {{ post.published_date }}
             </div>
+            <h1><a href="">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
         </div>
+    {% endfor %}
+    <!-- Všetko čo bude v cykle sa bude opakovať pre každý objekt v zozname -->
     </body>
 </html>
