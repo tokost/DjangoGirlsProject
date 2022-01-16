@@ -1,8 +1,11 @@
 <!DOCTYPE html>
+{% load static %}   <!-- Prepojenie adresara so statickymi subormi -->
 <html>
-    <head>  <!-- Nainštalovanie Bootstrap-u t.j. frameworku pre HTML a CSS -->
+        <head>  <!-- Nainštalovanie Bootstrap-u t.j. frameworku pre HTML a CSS -->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+            <!-- Odkaz na staticky subor ktory bude pouzity -->
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 
         <title>Django Girls blog</title>
     </head>
