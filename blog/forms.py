@@ -1,5 +1,5 @@
 from django import forms    # naimportovanie Django formulárov
-
+# from django.forms import forms
 from .models import Post    # naimportovanie nasho Post modelu
 
 class PostForm(forms.ModelForm): # PostForm je nazov nasho formulara

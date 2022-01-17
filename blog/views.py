@@ -2,7 +2,8 @@
 from django.utils import timezone   # pridane
 from .models import Post            # na pridanie modelu z models.py
 from django.shortcuts import render, get_object_or_404
-                                    # na pridanie modelu z models.py
+from .forms import PostForm         # importovanie nasej triedy PostForm t.j. nasho formulara
+
 # Create your views here.
 def post_list(request):    # vytvorili sme premennu post na odovzdavanie QuerySet ktora je aj jeho menom
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
