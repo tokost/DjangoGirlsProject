@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}  <!-- pridane cim znovu rozsirujeme base.html-->
+<html lang="en">                <!-- ponechame povodne en miesto sk-sk -->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+    <div class="post">
+        {% if post.published_date %}    <!-- tag šablóny, ktorý môžeme použiť ak chceme niečo skontrolovať -->
+            <div class="date">
+                {{ post.published_date }}  <!-- chceme overit ci published_date príspevku nie je prázdny -->
+            </div>
+        {% endif %}
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+{% endblock %}
+</body>
+</html>
