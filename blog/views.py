@@ -1,4 +1,4 @@
-from django.shortcuts import render
+# from django.shortcuts import render - uz je importovane nizsie
 from django.utils import timezone   # pridane
 from .models import Post            # na pridanie modelu z models.py
 from django.shortcuts import render, get_object_or_404
@@ -16,3 +16,7 @@ def post_detail(request, pk):   # pridanie nasho view pre post_detail
     post = get_object_or_404(Post, pk=pk)   # osetrenie situacie ak nie je ziaden Post s danym pk
                                 # zobrazí sa stránka, Page Not Found 404, ktoru mozno upravit
     return render(request, 'blog/post_detail.html', {'post': post})
+
+def post_new(request):  # Nový formulár Post vytvoríme tak, že sputíme PostForm() a prepošleme ho šablóne
+    form = PostForm()
+    return render(request, 'blog/post_edit.html', {'form': form})

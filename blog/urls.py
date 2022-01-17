@@ -8,5 +8,6 @@ urlpatterns = [
         # kam treba ísť, ak niekto vstúpi na stránku cez adresu 'http://127.0.0.1:8000/'
         # name='post_list' je názov URL, ktorý sa použije na identifikáciu zobrazenia
     path(r'^post/(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
-        # odkazanie Django na view nazvaný post_detail, ktorý zobrazí celý príspevok blogu)
-]
+        # odkazanie Django na view nazvaný post_detail, ktorý zobrazí celý príspevok blogu
+    path(r'^post/new/$', views.post_new, name='post_new'),
+]   # odkazanie Django na view nazvaný post_new, ktorý zobrazí formular blogu
