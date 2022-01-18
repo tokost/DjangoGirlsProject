@@ -19,5 +19,15 @@ def post_detail(request, pk):   # pridanie nasho view pre post_detail
     return render(request, 'blog/post_detail.html', {'post': post})
 
 def post_new(request):  # Nový formulár Post vytvoríme tak, že sputíme PostForm() a prepošleme ho šablóne
-    form = PostForm()
+    if request.method == "POST": # musíme ošetriť 2 prípady: 1, ak pristupujeme na stránku prvýkrát a chceme prázdny formulár,
+                                 # a 2, keď sa vrátime na view s už predvyplnenými údajmi
+        form = PostForm(request.POST) # pre 2 pripad uz mame z formulara v request.POST nejake udaje
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
