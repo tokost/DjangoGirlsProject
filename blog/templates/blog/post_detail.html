@@ -13,8 +13,10 @@
                 {{ post.published_date }}  <!-- chceme overit ci published_date príspevku nie je prázdny -->
             </div>
         {% endif %}
+        {% if user.is_authenticated %} <!-- opatrenie aby editovaciu ikonu si videl iba ty -->
                     <!-- pridanie nasledujuceho riadku kvoli upravam post-ov -->
-        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        {% endif %}
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
     </div>
