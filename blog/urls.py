@@ -13,4 +13,6 @@ urlpatterns = [
         # odkazanie Django na view nazvaný post_new, ktorý zobrazí formular blogu
     path(r'^post/(?P<pk>\d+)/edit/$', views.post_edit, name='post_edit'),
         # pridanie nasledujuceho riadku kvoli upravam post-ov
+    path('drafts/', views.post_draft_list, name='post_draft_list'),
+        # pridane za ucelom vytvorenia zoznamu docasnych (draft) post-ov
 ]

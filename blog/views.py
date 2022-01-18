@@ -50,3 +50,8 @@ def post_edit(request, pk):  # pridanie nasledujuceho bloku kvoli upravam post-o
         form = PostForm(instance=post)  # aj v prípade keď formulár upravujeme
     return render(request, 'blog/post_edit.html', {'form': form})
                         # nakolko znova použijeme šablónu post_edit.html
+
+def post_draft_list(request):    # pridane za ucelom vytvorenia zoznamu docasnych(draft) post-ov
+    posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
+    return render(request, 'blog/post_draft_list.html', {'posts': posts})
+        # do posts= vkladame iba nepublikovane post-y zoradene podla datumu
