@@ -4,6 +4,7 @@ from .models import Post            # na pridanie modelu z models.py
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm         # importovanie nasej triedy PostForm t.j. nasho formulara
                                     # definovaneho vo forms.py
+from django.shortcuts import redirect # aby sme sa pri pridavani dostali na zaciatok suboru
 # Create your views here.
 def post_list(request):    # vytvorili sme premennu post na odovzdavanie QuerySet ktora je aj jeho menom
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -22,12 +23,13 @@ def post_new(request):  # Nový formulár Post vytvoríme tak, že sputíme Post
     if request.method == "POST": # musíme ošetriť 2 prípady: 1, ak pristupujeme na stránku prvýkrát a chceme prázdny formulár,
                                  # a 2, keď sa vrátime na view s už predvyplnenými údajmi
         form = PostForm(request.POST) # pre 2 pripad uz mame z formulara v request.POST nejake udaje
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
+        if form.is_valid():  # kontrola ci je formular v poriadku (všetky povinné polia sú vyplnené a nie sú zadané žiadne nesprávne hodnoty)
+            post = form.save(commit=False)  # ak ano mozeme ho ulozit
+            post.author = request.user  # este sa prida pole autor lebo toto nebolo v PostForm
             post.published_date = timezone.now()
-            post.save()
-            return redirect('post_detail', pk=post.pk)
-    else:
+            post.save()  # uchová zmeny (pridanie autora) a máme vytvorený nový blog príspevok
+            return redirect('post_detail', pk=post.pk) # prechod na stranku noveho prispevku
+    else:                  # tento view vyžaduje premennú pk. Aby sme ju odovzdali do view, použijeme pk=post.pk
+                           # post je novy blog a post_detail je názov view, kam chceme ísť
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
