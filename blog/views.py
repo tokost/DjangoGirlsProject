@@ -33,3 +33,20 @@ def post_new(request):  # Nový formulár Post vytvoríme tak, že sputíme Post
                            # post je novy blog a post_detail je názov view, kam chceme ísť
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
+
+def post_edit(request, pk):  # pridanie nasledujuceho bloku kvoli upravam post-ov
+    post = get_object_or_404(Post, pk=pk) # odovzdávame navyše parameter pk z URL
+                                          # pomocou get_object_or_404(Post, pk=pk)
+                                          # získame tak Post model, ktorý chceme upravovať
+    if request.method == "POST": # následne pri vytváraní formuláru odovzdáme tento post ako parameter instance,
+        form = PostForm(request.POST, instance=post)  # aj v prípade keď ukladáme formulár
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm(instance=post)  # aj v prípade keď formulár upravujeme
+    return render(request, 'blog/post_edit.html', {'form': form})
+                        # nakolko znova použijeme šablónu post_edit.html

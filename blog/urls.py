@@ -10,4 +10,7 @@ urlpatterns = [
     path(r'^post/(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
         # odkazanie Django na view nazvaný post_detail, ktorý zobrazí celý príspevok blogu
     path(r'^post/new/$', views.post_new, name='post_new'),
-]   # odkazanie Django na view nazvaný post_new, ktorý zobrazí formular blogu
+        # odkazanie Django na view nazvaný post_new, ktorý zobrazí formular blogu
+    path(r'^post/(?P<pk>\d+)/edit/$', views.post_edit, name='post_edit'),
+        # pridanie nasledujuceho riadku kvoli upravam post-ov
+]
