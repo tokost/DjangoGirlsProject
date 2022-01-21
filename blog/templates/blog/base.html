@@ -12,7 +12,10 @@
 <body>
     <div class="page-header">
         {% if user.is_authenticated %}  <!-- link sa zobrazí len užívateľom, ktorí sú prihlásení ako admin -->
+                <!-- tlacitko pre novu post  -->
             <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+                <!-- tlacitko pre zoznam docasnych post t.j. draft-ov  -->
+            <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
                     <!--  chceme zavolať naše nové view post_new. Trieda "glyphicon glyphicon-plus" je poskytnutá bootstrap-->
                     <!--  témou ktorú používame a ona zobrazí znamienko plus pre nás  -->
         {% endif %}
@@ -21,8 +24,8 @@
     <div class="content container">
         <div class="row">
             <div class="col-md-8">
-            {% block content %} <!-- vytvorili sme blok. Použil sa šablónový tag % block % -->
-            {% endblock %}  <!-- blok je cast do ktorej bude vložené HTML.-->
+                {% block content %} <!-- vytvorili sme blok. Použil sa šablónový tag % block % -->
+                {% endblock %}  <!-- blok je cast do ktorej bude vložené HTML.-->
             </div>          <!-- To HTML bude pochádzať z inej šablóny, ktorá rozšíri šablónu base.html -->
         </div>
     </div>

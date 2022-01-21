@@ -15,4 +15,8 @@ urlpatterns = [
         # pridanie nasledujuceho riadku kvoli upravam post-ov
     path('drafts/', views.post_draft_list, name='post_draft_list'),
         # pridane za ucelom vytvorenia zoznamu docasnych (draft) post-ov
+    path('post/<pk>/publish/', views.post_publish, name='post_publish'),
+        # pridane za ucelom publish - publikovania
+    path('post/<pk>/remove/', views.post_remove, name='post_remove'),
+        # pridane za ucelom Delete - zmazania
 ]

@@ -12,11 +12,18 @@
             <div class="date">
                 {{ post.published_date }}  <!-- chceme overit ci published_date príspevku nie je prázdny -->
             </div>
+        {% else %}
+                <!-- vlozenie tlacitka - buttonu Publish na publikovanie post-u -->
+            <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+                <!-- vlozenie tlacitka - buttonu Publish na publikovanie post-u -->
+            <a class="btn btn-default" href="% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <!-- vlozenie tlacitka - buttonu krizik - Delete na zmazanie post-u -->
+            <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
         {% endif %}
-        {% if user.is_authenticated %} <!-- opatrenie aby editovaciu ikonu si videl iba ty -->
+<!--        % if user.is_authenticated %} -- opatrenie aby editovaciu ikonu si videl iba ty -->
                     <!-- pridanie nasledujuceho riadku kvoli upravam post-ov -->
-            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-        {% endif %}
+<!--            <a class="btn btn-default" href="% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a> -->
+<!--        % endif %} -->
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
     </div>

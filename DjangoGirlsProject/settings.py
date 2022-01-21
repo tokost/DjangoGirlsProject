@@ -24,7 +24,8 @@ SECRET_KEY = 'tmfup!d-x14%-g6krp6j*txzuziub)qjfo%!^v%-db6fi81zk-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-                         # pri True je debagovanie t.j. hladanie chyb
+# DEBUG = False                         # pri True je debagovanie t.j. hladanie chyb
+
 # ALLOWED_HOSTS = []     # povodne - vtedy je host overovany vôči ['localhost', '127.0.0.1', '[::1]']
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']    # pridane kvoli hostname na PythonAnywhere
 
@@ -77,6 +78,7 @@ WSGI_APPLICATION = 'DjangoGirlsProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }      # treba ale v terminaly vytvorit databazu prikazom python manage.py migrate
 }
