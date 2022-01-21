@@ -1,4 +1,4 @@
-from django.urls import path  # nie url ale pri Django ver. 4+ path
+from django.urls import path, re_path  # nie url ale pri Django ver. 4+ path
 from . import views
 
 urlpatterns = [
@@ -7,11 +7,12 @@ urlpatterns = [
         # Tento vzor povie Djangu, že views.post_list je to správne miesto,
         # kam treba ísť, ak niekto vstúpi na stránku cez adresu 'http://127.0.0.1:8000/'
         # name='post_list' je názov URL, ktorý sa použije na identifikáciu zobrazenia
-    path(r'^post/(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
+    re_path(r'^post/(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
+#    re_path miesto path(r'^post/(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
         # odkazanie Django na view nazvaný post_detail, ktorý zobrazí celý príspevok blogu
-    path(r'^post/new/$', views.post_new, name='post_new'),
+    re_path(r'^post/new/$', views.post_new, name='post_new'),
         # odkazanie Django na view nazvaný post_new, ktorý zobrazí formular blogu
-    path(r'^post/(?P<pk>\d+)/edit/$', views.post_edit, name='post_edit'),
+    re_path(r'^post/(?P<pk>\d+)/edit/$', views.post_edit, name='post_edit'),
         # pridanie nasledujuceho riadku kvoli upravam post-ov
     path('drafts/', views.post_draft_list, name='post_draft_list'),
         # pridane za ucelom vytvorenia zoznamu docasnych (draft) post-ov
