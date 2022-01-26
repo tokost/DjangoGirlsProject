@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+# import pymysql as db # pridane kvoli MySql, ale asi nemusi to tu byt
 import os
+import _locale  # pridane nove kvoli dump-u
+_locale._getdefaultlocale = (lambda *args: ['en_US', 'utf8'])  # pridane nove kvoli dump-u
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -56,8 +58,9 @@ ROOT_URLCONF = 'DjangoGirlsProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR + '/templates'], # hadzalo to tu chybu --> + '/
-        'APP_DIRS': True,                  #  BASE_DIR tu je DjangoGirlsProject
+        'DIRS': [],
+#        'DIRS': [BASE_DIR + '/templates'],  # hadzalo to tu chybu --> + '/
+        'APP_DIRS': True,                   # BASE_DIR tu je DjangoGirlsProject
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -77,10 +80,27 @@ WSGI_APPLICATION = 'DjangoGirlsProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }      # treba ale v terminaly vytvorit databazu prikazom python manage.py migrate
+        #   'ENGINE': 'django.db.backends.sqlite3',         nahradilo to povodne
+        #   'NAME': BASE_DIR / 'db.sqlite3',             toto je povodne
+        #   'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),   nahradilo sa povodne
+        #   treba ale v terminaly vytvorit databazu prikazom python manage.py migrate
+
+        # Django MySQL database engine driver class.
+        'ENGINE': 'django.db.backends.mysql',
+        # MySQL database host ip.
+        'HOST': '127.0.0.1',
+        # port number.
+        'PORT': '3306',
+        # database name.
+        'NAME': 'djangogirlsproject',
+        # user name.
+        'USER': 'root',
+        # password
+        'PASSWORD': '10042018-Tomo',
+        # connect options
+        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", },
+
+    }
 }
 
 
@@ -106,9 +126,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'sk-sk'         # povodne 'en-us'
+LANGUAGE_CODE = 'en-us'         # povodne 'en-us' nove sk-sk
 
-TIME_ZONE = 'Europe/Bratislava'     # povodne 'UTC'
+TIME_ZONE = 'UTC'     # povodne 'UTC' nove Europe/Bratislava
 
 USE_I18N = True
 

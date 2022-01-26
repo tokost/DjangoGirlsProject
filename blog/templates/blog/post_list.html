@@ -18,19 +18,21 @@
             <!-- Toto chcem epouzit ako sucast sablony pre vsetky bloky -->
         {% for post in posts %}
             <div class="post">  <!-- Definovanie triedy post -->
-                <div class="date>
-                    <!-- "<p>published: {{ post.published_date }}</p> nahradene nasledovnym -->
+                <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                <div class="date">
+                    <!-- "<p>published: { post.published_date }}</p> nahradene nasledovnym -->
                     {{ post.published_date }}
                 </div>          <!--  link z titulku príspevku ma odkazovat na stranku detail -->
-                <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+
                             <!-- % % znamená, že používame tagy Django šablóny a to post_detail -->
                             <!-- Django bude očakávať URL v blog/urls.py s name=post_detail -->
                             <!-- pk je skratka pre primárny kľúč, ktorý určuje každý záznam v databáze -->
                             <!-- kedze sme pk nevytvorili v nasom post modely, Django to urobi za nas -->
                 <p>{{ post.text|linebreaksbr }}</p>
+                {{ post.tags }}  <!-- pridane  -->
             </div>
         {% endfor %}
-    <!-- Všetko čo bude v cykle sa bude opakovať pre každý objekt v zozname -->
-    {% endblock %}
+            <!-- Všetko čo bude v cykle sa bude opakovať pre každý objekt v zozname -->
+    {% endblock content %}
     </body>
 </html>
